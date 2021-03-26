@@ -4,7 +4,7 @@
 
 # Demo
 
-- https://ioasys-challenge-books.vercel.app
+Hosted on [Vercel](https://vercel.com/): https://ioasys-challenge-books.vercel.app
 
 # Usage
 
