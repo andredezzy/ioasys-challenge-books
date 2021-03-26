@@ -1,7 +1,10 @@
+import PropTypes from 'prop-types';
+
 import { ReactComponent as Logo } from '../../assets/logo.svg';
+
 import { Container } from './styles';
 
-function Title({ color = '#333' }) {
+function Header({ color }) {
   return (
     <Container color={color}>
       <Logo alt="Ioasys" />
@@ -11,4 +14,12 @@ function Title({ color = '#333' }) {
   );
 }
 
-export default Title;
+Header.propTypes = {
+  color: PropTypes.string,
+};
+
+Header.defaultProps = {
+  color: '#333',
+};
+
+export default Header;

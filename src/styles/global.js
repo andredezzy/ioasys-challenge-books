@@ -9,13 +9,13 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
 
-  @media (max-width: 1080px) {
+  @media (max-width: 960px) {
     html {
       font-size: 93.75%;
     }
   }
 
-  @media (max-width: 720px) {
+  @media (max-width: 600px) {
     html {
       font-size: 87.5%;
     }
@@ -23,6 +23,9 @@ export default createGlobalStyle`
 
   html {
     height: 100%;
+
+    background: url(${backgroundImg}) no-repeat center center fixed;
+    background-size: cover;
   }
 
   body, #root {
@@ -30,7 +33,6 @@ export default createGlobalStyle`
   }
 
   body {
-    background: url(${backgroundImg}) #fff no-repeat center/cover;
     color: #333;
   }
 

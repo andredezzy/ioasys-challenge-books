@@ -1,10 +1,13 @@
+import { AuthenticationProvider } from './contexts/AuthenticationContext';
 import Routes from './routes';
 import GlobalStyle from './styles/global';
 
 function App() {
   return (
     <>
-      <Routes />
+      <AuthenticationProvider>
+        <Routes />
+      </AuthenticationProvider>
 
       <GlobalStyle />
     </>

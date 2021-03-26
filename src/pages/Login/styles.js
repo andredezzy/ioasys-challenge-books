@@ -26,3 +26,15 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
 `;
+
+export const Form = styled.div`
+  margin-top: 3rem;
+
+  > #input-container {
+    max-width: 368px;
+
+    + #input-container {
+      margin-top: 1rem;
+    }
+  }
+`;
