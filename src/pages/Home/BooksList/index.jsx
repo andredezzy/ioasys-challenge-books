@@ -1,25 +1,28 @@
 import { useState, useEffect } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { useHistory } from 'react-router-dom';
 
 import BookCard from '../../../components/BookCard';
 import BookCardSkeleton from '../../../components/BookCard/Skeleton';
-import BookDetailsModal from '../../../components/BookDetailsModal';
 import IconButton from '../../../components/Button/Icon';
 import api from '../../../services/api';
+import formatToKebabCase from '../../../utils/formatToKebabCase';
 
+import BookDetails from './BookDetails';
 import { Container, List, Pagination } from './styles';
 
 function BooksList() {
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [books, setBooks] = useState([]);
-  const [bookDetails, setBookDetails] = useState();
 
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
+  const history = useHistory();
+
   useEffect(() => {
     async function loadBooks() {
-      setLoading(true);
+      setIsLoading(true);
 
       const response = await api.get('/books', {
         params: { page, amount: 12 },
@@ -30,14 +33,16 @@ function BooksList() {
       setBooks(data);
       setTotalPages(Math.ceil(newTotalPages));
 
-      setLoading(false);
+      setIsLoading(false);
     }
 
     loadBooks();
   }, [page]);
 
   function openBookDetails(book) {
-    setBookDetails(book);
+    const titleKebabCase = formatToKebabCase(book.title);
+
+    history.push(`/books/${book.id}/${titleKebabCase}`);
   }
 
   function previousPage() {
@@ -52,7 +57,7 @@ function BooksList() {
     <>
       <Container>
         <List>
-          {loading
+          {isLoading
             ? [...Array(6).keys()].map(key => <BookCardSkeleton key={key} />)
             : books.map(book => (
                 <BookCard
@@ -81,11 +86,7 @@ function BooksList() {
         </Pagination>
       </Container>
 
-      <BookDetailsModal
-        isOpen={!!bookDetails}
-        book={bookDetails}
-        onClose={() => setBookDetails(null)}
-      />
+      <BookDetails />
     </>
   );
 }

@@ -10,6 +10,8 @@ function Routes() {
     <Router>
       <Switch>
         <Route path="/login" component={Login} />
+
+        <Route path="/books/:id/:title" component={Home} isPrivate />
         <Route path="/" component={Home} isPrivate />
       </Switch>
     </Router>

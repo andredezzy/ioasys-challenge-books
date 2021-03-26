@@ -50,6 +50,12 @@ export const Info = styled.div`
     div {
       display: flex;
       justify-content: space-between;
+      align-items: center;
+
+      span {
+        display: flex;
+        align-items: center;
+      }
     }
   }
 
@@ -63,6 +69,10 @@ export const Info = styled.div`
       overflow-y: auto;
 
       max-height: 124px;
+
+      padding-right: 1rem;
+
+      text-align: justify;
 
       ::-webkit-scrollbar {
         width: 6px;
@@ -142,8 +152,16 @@ export const Container = styled.div`
   @media (max-width: 960px) {
     max-height: none;
     flex-direction: column;
+    align-items: center;
 
     padding: 2rem;
+
+    img {
+      max-width: 296px;
+      min-height: 424px;
+
+      text-align: center;
+    }
 
     ${Info} {
       margin-top: 2rem;

@@ -1,12 +1,15 @@
 import { FiX } from 'react-icons/fi';
 import { ImQuotesLeft } from 'react-icons/im';
+import Skeleton from 'react-loading-skeleton';
 import ReactModal from 'react-modal';
 
 import PropTypes from 'prop-types';
 
-import { Overlay, CloseButton, Container, Info } from './styles';
+import { Overlay, CloseButton, Container, Info } from '../styles';
 
-function BookDetailsModal({ isOpen, book, onClose }) {
+import { ImageSkeletonContainer, QuotesSkeletonContainer } from './styles';
+
+function BookDetailsModalSkeleton({ isOpen, onClose }) {
   return (
     <ReactModal
       isOpen={isOpen}
@@ -25,12 +28,14 @@ function BookDetailsModal({ isOpen, book, onClose }) {
       )}
       onRequestClose={onClose}
     >
-      <img src={book.imageUrl} alt={book.title} />
+      <ImageSkeletonContainer>
+        <Skeleton />
+      </ImageSkeletonContainer>
 
       <Info>
         <header>
-          <h1>{book.title}</h1>
-          <h2>{book.authors && book.authors.join(', ')}</h2>
+          <Skeleton width="100%" height={32} />
+          <Skeleton width="75%" height={18} style={{ marginTop: 8 }} />
         </header>
 
         <footer>
@@ -38,37 +43,52 @@ function BookDetailsModal({ isOpen, book, onClose }) {
 
           <div>
             <strong>Páginas</strong>
-            <span>{book.pageCount} páginas</span>
+            <span>
+              <Skeleton width={32} height={18} style={{ marginRight: 8 }} />{' '}
+              páginas
+            </span>
           </div>
 
           <div>
             <strong>Editora</strong>
-            <span>{book.publisher}</span>
+            <span>
+              <Skeleton width={64} height={18} />
+            </span>
           </div>
 
           <div>
             <strong>Publicação</strong>
-            <span>{book.published}</span>
+            <span>
+              <Skeleton width={40} height={18} />
+            </span>
           </div>
 
           <div>
             <strong>Idioma</strong>
-            <span>{book.language}</span>
+            <span>
+              <Skeleton width={48} height={18} />
+            </span>
           </div>
 
           <div>
             <strong>Titulo Original</strong>
-            <span>{book.title}</span>
+            <span>
+              <Skeleton width={96} height={18} />
+            </span>
           </div>
 
           <div>
             <strong>ISBN-10</strong>
-            <span>{book.isbn10}</span>
+            <span>
+              <Skeleton width={48} height={18} />
+            </span>
           </div>
 
           <div>
             <strong>ISBN-13</strong>
-            <span>{book.isbn13}</span>
+            <span>
+              <Skeleton width={56} height={18} />
+            </span>
           </div>
         </footer>
 
@@ -76,8 +96,12 @@ function BookDetailsModal({ isOpen, book, onClose }) {
           <h1>RESENHA DA EDITORA</h1>
 
           <p>
-            <ImQuotesLeft size={28} />
-            {book.description}
+            <QuotesSkeletonContainer>
+              <ImQuotesLeft size={28} />
+              <Skeleton width="99%" height={18} />
+            </QuotesSkeletonContainer>
+
+            <Skeleton width="99%" count={8} />
           </p>
         </div>
       </Info>
@@ -85,26 +109,13 @@ function BookDetailsModal({ isOpen, book, onClose }) {
   );
 }
 
-BookDetailsModal.propTypes = {
+BookDetailsModalSkeleton.propTypes = {
   isOpen: PropTypes.bool.isRequired,
-  book: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    authors: PropTypes.arrayOf(PropTypes.string).isRequired,
-    pageCount: PropTypes.number.isRequired,
-    category: PropTypes.string.isRequired,
-    imageUrl: PropTypes.string.isRequired,
-    isbn10: PropTypes.string.isRequired,
-    isbn13: PropTypes.string.isRequired,
-    language: PropTypes.string.isRequired,
-    publisher: PropTypes.string.isRequired,
-    published: PropTypes.number.isRequired,
-  }).isRequired,
   onClose: PropTypes.func,
 };
 
-BookDetailsModal.defaultProps = {
+BookDetailsModalSkeleton.defaultProps = {
   onClose: () => {},
 };
 
-export default BookDetailsModal;
+export default BookDetailsModalSkeleton;

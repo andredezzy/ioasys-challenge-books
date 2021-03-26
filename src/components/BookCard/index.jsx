@@ -11,7 +11,7 @@ function BookCard({ book, ...rest }) {
         <header>
           <h1>{book.title}</h1>
           {book.authors.map(author => (
-            <h2>{author}</h2>
+            <h2 key={author}>{author}</h2>
           ))}
         </header>
 
