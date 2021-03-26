@@ -31,7 +31,7 @@ export const Container = styled.div`
 
     margin-top: 3rem;
 
-    > #input-container {
+    #input-container {
       max-width: 368px;
 
       + #input-container {

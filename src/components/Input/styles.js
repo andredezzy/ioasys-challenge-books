@@ -9,7 +9,7 @@ export const Container = styled.div`
 
   height: 4rem;
 
-  > label {
+  label {
     position: absolute;
     top: 0.5rem;
     left: 1rem;
@@ -19,7 +19,7 @@ export const Container = styled.div`
     opacity: 0.5;
   }
 
-  > input {
+  input {
     width: 100%;
     height: 100%;
 

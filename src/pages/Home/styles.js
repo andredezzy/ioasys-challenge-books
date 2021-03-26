@@ -19,7 +19,7 @@ export const Profile = styled.div`
   display: flex;
   align-items: center;
 
-  > span {
+  span {
     color: #333;
 
     margin-right: 1rem;
@@ -28,7 +28,7 @@ export const Profile = styled.div`
       display: none;
     }
 
-    > strong {
+    strong {
       font-weight: 500;
     }
   }
