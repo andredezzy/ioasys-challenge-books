@@ -25,16 +25,49 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  form {
+    position: relative;
+
+    margin-top: 3rem;
+
+    > #input-container {
+      max-width: 368px;
+
+      + #input-container {
+        margin-top: 1rem;
+      }
+    }
+  }
 `;
 
-export const Form = styled.div`
-  margin-top: 3rem;
+export const ErrorTooltip = styled.div`
+  position: absolute;
+  bottom: -80px;
+  left: 0;
 
-  > #input-container {
-    max-width: 368px;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(2px);
+  border-radius: 4px;
 
-    + #input-container {
-      margin-top: 1rem;
-    }
+  padding: 1rem;
+
+  color: #fff;
+  font-weight: bold;
+
+  :before {
+    content: '';
+    display: block;
+
+    position: absolute;
+    left: 17px;
+    top: -20px;
+
+    width: 0;
+    height: 0;
+
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent rgba(255, 255, 255, 0.4) transparent;
   }
 `;

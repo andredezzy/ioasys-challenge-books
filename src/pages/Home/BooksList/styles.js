@@ -52,6 +52,10 @@ export const Pagination = styled.div`
 
   span {
     margin: 0 1rem;
+
+    strong {
+      font-weight: 500;
+    }
   }
 
   #icon-button-container + #icon-button-container {

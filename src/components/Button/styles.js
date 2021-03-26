@@ -17,7 +17,7 @@ export const Container = styled.button`
 
   :hover {
     background: ${darken(0.025, '#fff')};
-    box-shadow: 0 0 8px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 8px 8px rgba(0, 0, 0, 0.1);
   }
 `;
 

@@ -4,6 +4,7 @@ export const Container = styled.div`
   position: relative;
 
   background: rgba(0, 0, 0, 0.32);
+  backdrop-filter: blur(2px);
   border-radius: 4px;
 
   height: 4rem;

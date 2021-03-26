@@ -1,25 +1,49 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+
+import * as Yup from 'yup';
+
+import { Form } from '@unform/web';
 
 import Button from '../../components/Button';
 import Header from '../../components/Header';
 import Input from '../../components/Input';
 import { useAuthentication } from '../../hooks/useAuthentication';
 
-import { BackgroundImage, Container, Form } from './styles';
+import { BackgroundImage, Container, ErrorTooltip } from './styles';
 
 function Login() {
+  const formRef = useRef(null);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState();
 
   const { signIn, isSigningIn } = useAuthentication();
 
   const history = useHistory();
 
   async function handleSignIn() {
-    await signIn('desafio@ioasys.com.br', '12341234');
+    try {
+      formRef.current?.setErrors({});
 
-    history.push('/');
+      setError(null);
+
+      const schema = Yup.object().shape({
+        email: Yup.string()
+          .required('E-mail obrigatório')
+          .email('Digite um e-mail válido'),
+        password: Yup.string().required('Senha obrigatória'),
+      });
+
+      await schema.validate({ email, password }, { abortEarly: false });
+
+      await signIn(email, password);
+
+      history.push('/');
+    } catch {
+      setError('Email e/ou senha incorretos.');
+    }
   }
 
   return (
@@ -27,7 +51,7 @@ function Login() {
       <Container>
         <Header color="#fff" />
 
-        <Form>
+        <Form ref={formRef} onSubmit={handleSignIn}>
           <Input
             name="email"
             label="Email"
@@ -42,10 +66,12 @@ function Login() {
             value={password}
             onChange={e => setPassword(e.target.value)}
           >
-            <Button loading={isSigningIn} onClick={handleSignIn}>
+            <Button type="submit" loading={isSigningIn}>
               Entrar
             </Button>
           </Input>
+
+          {error && <ErrorTooltip>{error}</ErrorTooltip>}
         </Form>
       </Container>
 

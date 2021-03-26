@@ -125,7 +125,7 @@ export const Container = styled.div`
 
   position: absolute;
   inset: 16px;
-  margin-top: 4rem;
+  margin-top: 5rem;
   margin-left: auto;
   margin-right: auto;
 
@@ -140,7 +140,7 @@ export const Container = styled.div`
   padding: 3rem;
 
   @media (max-width: 960px) {
-    max-height: auto;
+    max-height: none;
     flex-direction: column;
 
     padding: 2rem;
